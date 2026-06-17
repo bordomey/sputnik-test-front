@@ -40,6 +40,7 @@ defineEmits<{ 'update:modelValue': [value: string] }>();
 
 .search-input {
   flex: 1;
+  min-width: 0;
 }
 
 .search-input__wrapper {

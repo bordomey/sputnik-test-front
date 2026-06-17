@@ -23,7 +23,7 @@ export function useProducts(searchQuery: Ref<string>, cityId: Ref<number | null>
     const city = cityId.value;
     return products.value.filter((p) => {
       const matchesQuery = q === '' || p.title.toLowerCase().includes(q);
-      const matchesCity = city === null || p.city_id === city;
+      const matchesCity = city === null || city === 0 || p.city_id === city;
       return matchesQuery && matchesCity;
     });
   });

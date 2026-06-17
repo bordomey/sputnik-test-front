@@ -1,6 +1,6 @@
 import type { City, Product } from '../types';
 
-const BASE = 'https://api.sputnik8.com/v1';
+const BASE = '/v1';
 const AUTH = 'api_key=873fa71c061b0c36d9ad7e47ec3635d9&username=frontend@sputnik8.com';
 
 export async function fetchProducts(): Promise<Product[]> {

@@ -1,21 +1,28 @@
 {
-  "name": "tmp-scaffold",
+  "name": "sputnik8-front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.vue",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "vue": "^3.5.34"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.5.0",
+    "eslint-plugin-vue": "^10.9.2",
+    "prettier": "^3.8.4",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.61.1",
     "vite": "^8.0.12",
     "vue-tsc": "^3.2.8"
   }

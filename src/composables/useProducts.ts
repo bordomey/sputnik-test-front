@@ -1,8 +1,8 @@
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, type Ref } from 'vue';
 import { fetchProducts } from '../api';
 import type { Product } from '../types';
 
-export function useProducts(searchQuery: ReturnType<typeof ref<string>>, cityId: ReturnType<typeof ref<number | null>>) {
+export function useProducts(searchQuery: Ref<string>, cityId: Ref<number | null>) {
   const products = ref<Product[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);

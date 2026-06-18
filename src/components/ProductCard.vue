@@ -10,6 +10,15 @@ function formatPrice(raw: string): string {
   const currency = match[2].trim();
   return `от ${num.toLocaleString('ru-RU')} ${currency}`;
 }
+
+const TYPE_LABELS: Record<string, string> = {
+  tour: 'Экскурсия',
+  composite_activity: 'Активность',
+};
+
+function formatType(type: string): string {
+  return TYPE_LABELS[type] ?? type;
+}
 </script>
 
 <template>
@@ -29,6 +38,7 @@ function formatPrice(raw: string): string {
         <span class="card__star">★</span>
         <span class="card__rating-value">{{ product.customers_review_rating }}</span>
         <span class="card__reviews">({{ product.reviews }})</span>
+        <span class="card__type">{{ formatType(product.activity_type) }}</span>
       </div>
       <h3 class="card__title">{{ product.title }}</h3>
       <div class="card__price-section">
@@ -150,6 +160,16 @@ function formatPrice(raw: string): string {
 
 .card__reviews {
   color: #6b7280;
+}
+
+.card__type {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
 .card__title {

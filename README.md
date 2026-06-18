@@ -1,5 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Тестовое задание в Sputnik8
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Развёрнуто в облаке: https://sputnik-test-front.vercel.app/
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Автор: Николаенков Владислав
+
+
+Небольшое приложение, которое занимается поиском экскурсий по названию и городу.
+Элементы
+● логотип
+● заголовок
+● поле ввода
+● выпадающий список
+● карточка экскурсии (обложка, рейтинг, название, цена, тип)
+● параграф
+● кнопка
+
+Пользователь может
+● Открыть страницу
+● Ввести название экскурсии и/или выбрать город
+● Сбросить название экскурсии, нажав на крестик в поле ввода
+● Сбросить фильтры по кнопке, если поиск не даст результатов
+
+Задание
+● Создать git репозиторий в GitHub и расшарить его на @vnurov
+⚠️ Важно: вести всю историю коммитов с самого начала разработки
+● Локально создать приложение на Vue 2/3 или Nuxt 2/3 с использованием
+TypeScript
+● Сверстать по макетам (Ссылка на Figma)
+  ○ можно дополнять макет своими UI решениями
+  ○ нельзя использовать готовые библиотеки компонентов
+● Реализовать получение экскурсий и городов по API (справка по api ниже)
+● Реализовать поиск на стороне фронтенда в полученных из API экскурсий по
+названию (поле title) и городу (поле city_id

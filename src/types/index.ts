@@ -1,3 +1,9 @@
+export interface ProductHost {
+  name: string;
+  photo: string;
+  review_rating: number;
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -8,6 +14,8 @@ export interface Product {
   reviews: number;
   city_id: number;
   duration: string;
+  short_info: string;
+  host: ProductHost;
 }
 
 export interface City {

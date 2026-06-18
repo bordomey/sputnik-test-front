@@ -14,7 +14,16 @@ function formatPrice(raw: string): string {
 
 <template>
   <article class="card">
-    <img :src="product.image_big" :alt="product.title" class="card__image" />
+    <div class="card__image-wrapper">
+      <img :src="product.image_big" :alt="product.title" class="card__image" />
+
+      <span class="card__duration">{{ product.duration }}</span>
+
+      <div v-if="product.short_info" class="card__overlay">
+        <p class="card__short-info">{{ product.short_info }}</p>
+      </div>
+    </div>
+
     <div class="card__body">
       <div class="card__rating">
         <span class="card__star">★</span>
@@ -22,8 +31,10 @@ function formatPrice(raw: string): string {
         <span class="card__reviews">({{ product.reviews }})</span>
       </div>
       <h3 class="card__title">{{ product.title }}</h3>
-      <p class="card__price">{{ formatPrice(product.price) }}</p>
-      <p class="card__price-label">за экскурсию</p>
+      <div class="card__price-section">
+        <p class="card__price">{{ formatPrice(product.price) }}</p>
+        <p class="card__price-label">за экскурсию</p>
+      </div>
     </div>
   </article>
 </template>
@@ -32,6 +43,24 @@ function formatPrice(raw: string): string {
 .card {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Image ── */
+.card__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
 }
 
 .card__image {
@@ -39,10 +68,65 @@ function formatPrice(raw: string): string {
   aspect-ratio: 3 / 2;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
 }
 
+.card:hover .card__image {
+  transform: scale(1.05);
+}
+
+/* ── Duration badge: hidden when overlay appears ── */
+.card__duration {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.52);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 20px;
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .card__duration {
+  opacity: 0;
+}
+
+/* ── Short info overlay ── */
+.card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 12px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .card__overlay {
+  opacity: 1;
+}
+
+.card__short-info {
+  margin: 0;
+  color: #fff;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Body: flex column so price sticks to bottom ── */
 .card__body {
-  padding: 10px 0 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 4px 4px;
   text-align: left;
 }
 
@@ -69,11 +153,17 @@ function formatPrice(raw: string): string {
 }
 
 .card__title {
-  margin: 0 0 6px;
+  margin: 0;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #111;
   line-height: 1.4;
+}
+
+/* Price pinned to bottom regardless of title length */
+.card__price-section {
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .card__price {

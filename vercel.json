@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/v1/:path*",
-      "destination": "https://api.sputnik8.com/v1/:path*"
-    }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
